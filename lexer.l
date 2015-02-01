@@ -20,9 +20,7 @@
 
 %%
 
-[ ]		{ std::cout << " " << std::endl; }
-[\t]  		{ std::cout << "\t" << std::endl; }
-[\n]		{ std::cout << std::endl; }
+[ \t\n]		{ }
 
 "("		{ std::cout << "(" << std::endl; }
 ")"		{ std::cout << ")" << std::endl; }
@@ -49,22 +47,33 @@
 "%"		{ std::cout << "%" << std::endl; }
 "#"		{ std::cout << "#" << std::endl; }
 "\\"		{ std::cout << "\\" << std::endl; }
-[']		{ std::cout << "'" << std::endl;
-		  if(inString) inString = false; 
+[']		{ if(inString) inString = false; 
 		  else { BEGIN(string_); inString=true; }  }
-"\""		{ std::cout << "\"" << std::endl;
-		  if(inString) inString = false; 
+"\""		{ if(inString) inString = false; 
 		  else { BEGIN(string); inString=true; }   }
 "/*"		{ std::cout << "COMMENT" << std::endl; BEGIN(comment); }
 "//"		{ std::cout << "COMMENT" << std::endl; BEGIN(comment_); }
 if		{ std::cout << "if" << std::endl; }
 in		{ std::cout << "in" << std::endl; }
 do		{ std::cout << "do" << std::endl; }
+"+="		{ std::cout << "+=" << std::endl; }
+"-="		{ std::cout << "-=" << std::endl; }
+"*="		{ std::cout << "*=" << std::endl; }
+"/="		{ std::cout << "/=" << std::endl; }
+"%="		{ std::cout << "%=" << std::endl; }
+"=="		{ std::cout << "==" << std::endl; }
+"!="		{ std::cout << "!=" << std::endl; }
+"<="		{ std::cout << "<=" << std::endl; }
+">="		{ std::cout << ">=" << std::endl; }
+"&&"		{ std::cout << "&&" << std::endl; }
+"||"		{ std::cout << "||" << std::endl; }
 for		{ std::cout << "for" << std::endl; }
 var		{ std::cout << "var" << std::endl; }
 new		{ std::cout << "new" << std::endl; }
 let		{ std::cout << "let" << std::endl; }
 try		{ std::cout << "try" << std::endl; }
+"==="		{ std::cout << "===" << std::endl; }
+"!=="		{ std::cout << "!==" << std::endl; }
 else		{ std::cout << "else" << std::endl; }
 with		{ std::cout << "with" << std::endl; }
 this		{ std::cout << "this" << std::endl; }
