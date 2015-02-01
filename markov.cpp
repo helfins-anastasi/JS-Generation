@@ -9,6 +9,8 @@
 using namespace std;
 
 bool debug = false;
+int numopenbrace = 0;
+int numopenparen = 0;
 
 class token{
   public:
@@ -32,10 +34,12 @@ token::token(string str){
 }
 
 void makeString(){
+	cout << "\"";
 	for(int i = 0; i < (rand() % 20)+1;i++){
 		cout << letters[rand() % 52];	
 		cout << vowelsplus[rand()%6];
 	}
+	cout << "\"";
 }
 
 void makeNum(){
@@ -113,6 +117,7 @@ int main(){
 	
 	int checkIndex = 0;
 	while(checkIndex != -1){
+		bool possiblenewline = false;
 		string currstr = wordList[checkIndex].val;
 		if(currstr == "IDENTIFIER"){
 			makeId();
@@ -124,11 +129,52 @@ int main(){
 		} else if (currstr == "STRING_LITERAL") {
 			makeString();
 		} else {
+			if(currstr == "}"){
+				numopenbrace -=1;
+				possiblenewline = true;
+			}
+			if(currstr == "{"){
+				numopenbrace +=1;
+			}
+			if(currstr == "("){
+				numopenparen +=1;
+			}
+			if(currstr == ")"){
+				possiblenewline = true;
+			}
+			if(currstr == ";"){
+				possiblenewline = true;
+			}
+			if(currstr == ";" && numopenparen > 0){
+				currstr = ")";
+				numopenparen -= 1;
+			}
 			cout << wordList[checkIndex].val;
 		}
+	
+		cout << " ";
+		if(possiblenewline && (rand() % 3) == 0){
+			cout << "\n";
+		}
 
+
+		int tempIndex = checkIndex;
 		int nextIndex = rand() % wordList[checkIndex].next.size();
 		checkIndex = wordList[checkIndex].next[nextIndex];
+		bool cannotcont = true;	
+
+		while(cannotcont){
+			cannotcont = false;
+			if(checkIndex == -1 && numopenbrace > 0){
+				numopenbrace -= 1;
+				cout << "}\n";	
+				cannotcont = true;
+			} else if(checkIndex == -1 && numopenparen > 0){
+				numopenparen -= 1;
+				cout << ")\n";
+				cannotcont = true;
+			}
+		}
 	}	
 	
 
