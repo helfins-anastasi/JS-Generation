@@ -20,7 +20,8 @@
 
 %%
 
-[ \t]  		{}
+[ ]		{ std::cout << " " << std::endl; }
+[\t]  		{ std::cout << "\t" << std::endl; }
 [\n]		{ std::cout << std::endl; }
 
 "("		{ std::cout << "(" << std::endl; }

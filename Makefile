@@ -30,4 +30,5 @@ run: $(TARGET) markov
 
 .PHONY: clean
 clean:
-	rm -f *.o *~ lexer.cpp parser.cpp parser.hpp parser.output markov $(TARGET)
+	rm -f *.o *~ lexer.cpp parser.cpp parser.hpp parser.output markov output.txt $(TARGET)
+	rm -rf *.dSYM
