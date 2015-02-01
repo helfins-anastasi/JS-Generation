@@ -32,12 +32,10 @@ token::token(string str){
 }
 
 void makeString(){
-	cout << "\"";
 	for(int i = 0; i < (rand() % 20)+1;i++){
 		cout << letters[rand() % 52];	
 		cout << vowelsplus[rand()%6];
 	}
-	cout << "\"";
 }
 
 void makeNum(){
@@ -69,6 +67,9 @@ int main(){
 	int previndex;
 	vector<token> wordList;
 	while(getline(cin,c)){
+		if(c==""){
+			c = '\n';
+		}
 		bool putin = false;
 		for(vector<token>::iterator it = wordList.begin(); it!=wordList.end(); ++it){
 			if(it->val == c){
@@ -125,8 +126,6 @@ int main(){
 		} else {
 			cout << wordList[checkIndex].val;
 		}
-	
-		cout <<  " ";		
 
 		int nextIndex = rand() % wordList[checkIndex].next.size();
 		checkIndex = wordList[checkIndex].next[nextIndex];
