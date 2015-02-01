@@ -21,6 +21,7 @@
 
 [ \t]  		{}
 [\n]		{ std::cout << "\n" << std::endl; }
+
 "("		{ std::cout << "(" << std::endl; }
 ")"		{ std::cout << ")" << std::endl; }
 ","		{ std::cout << "," << std::endl; }
@@ -43,6 +44,7 @@
 "*"		{ std::cout << "*" << std::endl; }
 "/"		{ std::cout << "/" << std::endl; }
 "!"		{ std::cout << "!" << std::endl; }
+"%"		{ std::cout << "%" << std::endl; }
 "\\"		{ std::cout << "\\" << std::endl; }
 [']		{ std::cout << "'" << std::endl;
 		  if(inString) inString = false; 
@@ -91,7 +93,7 @@ undefined	{ std::cout << "undefined" << std::endl; }
 instanceof	{ std::cout << "instanceof" << std::endl; }
 "use strict"	{ std::cout << "use strict" << std::endl; }
 
-[0-9]*		{ std::cout  <<  "NUMBER"  <<  std::endl;  }
+[0-9]*		{ std::cout  <<  "NUMBER"  <<  std::endl; }
 
 class|extends|enum|await { yyerror("invalid keyword"); }
 
