@@ -15,93 +15,97 @@
 %x string
 %x comment
 %x string_
+%x comment_
 
 %%
 
-[ \t\n]         {}
-
-"("		{ std::cout << "(" << std::endl; return T;}
-")"		{ std::cout << ")" << std::endl; return T;}
-","		{ std::cout << "," << std::endl; return T;}
-"{"		{ std::cout << "{" << std::endl; return T;}
-"}"		{ std::cout << "}" << std::endl; return T;}
-";"		{ std::cout << ";" << std::endl; return T;}
-"="		{ std::cout << "=" << std::endl; return T;}
-"?"		{ std::cout << "?" << std::endl; return T;}
-":"		{ std::cout << ":" << std::endl; return T;}
-"|"		{ std::cout << "|" << std::endl; return T;}
-"^"		{ std::cout << "^" << std::endl; return T;}
-"&"		{ std::cout << "&" << std::endl; return T;}
-"+"		{ std::cout << "+" << std::endl; return T;}
-"-"		{ std::cout << "-" << std::endl; return T;}
-"."		{ std::cout << "." << std::endl; return T;}
-"["		{ std::cout << "[" << std::endl; return T;}
-"]"		{ std::cout << "]" << std::endl; return T;}
-"<"		{ std::cout << "<" << std::endl; return T;}
-">"		{ std::cout << ">" << std::endl; return T;}
-"*"		{ std::cout << "*" << std::endl; return T;}
-"/"		{ std::cout << "/" << std::endl; return T;}
-"!"		{ std::cout << "!" << std::endl; return T;}
-"\\"		{ std::cout << "\\" << std::endl; return T;}
+[ \t]  		{}
+[\n]		{ std::cout << "\n" << std::endl; }
+"("		{ std::cout << "(" << std::endl; }
+")"		{ std::cout << ")" << std::endl; }
+","		{ std::cout << "," << std::endl; }
+"{"		{ std::cout << "{" << std::endl; }
+"}"		{ std::cout << "}" << std::endl; }
+";"		{ std::cout << ";" << std::endl; }
+"="		{ std::cout << "=" << std::endl; }
+"?"		{ std::cout << "?" << std::endl; }
+":"		{ std::cout << ":" << std::endl; }
+"|"		{ std::cout << "|" << std::endl; }
+"^"		{ std::cout << "^" << std::endl; }
+"&"		{ std::cout << "&" << std::endl; }
+"+"		{ std::cout << "+" << std::endl; }
+"-"		{ std::cout << "-" << std::endl; }
+"."		{ std::cout << "." << std::endl; }
+"["		{ std::cout << "[" << std::endl; }
+"]"		{ std::cout << "]" << std::endl; }
+"<"		{ std::cout << "<" << std::endl; }
+">"		{ std::cout << ">" << std::endl; }
+"*"		{ std::cout << "*" << std::endl; }
+"/"		{ std::cout << "/" << std::endl; }
+"!"		{ std::cout << "!" << std::endl; }
+"\\"		{ std::cout << "\\" << std::endl; }
 [']		{ std::cout << "'" << std::endl;
 		  if(inString) inString = false; 
 		  else { BEGIN(string_); inString=true; }  }
 "\""		{ std::cout << "\"" << std::endl;
 		  if(inString) inString = false; 
 		  else { BEGIN(string); inString=true; }   }
-"/*"		{ std::cout << "COMMENT" <<std::endl;BEGIN(comment);}
-if		{ std::cout << "if" << std::endl; return T;}
-in		{ std::cout << "in" << std::endl; return T;}
-do		{ std::cout << "do" << std::endl; return T;}
-for		{ std::cout << "for" << std::endl; return T;}
-var		{ std::cout << "var" << std::endl; return T;}
-new		{ std::cout << "new" << std::endl; return T;}
-let		{ std::cout << "let" << std::endl; return T;}
-try		{ std::cout << "try" << std::endl; return T;}
-else		{ std::cout << "else" << std::endl; return T;}
-with		{ std::cout << "with" << std::endl; return T;}
-this		{ std::cout << "this" << std::endl; return T;}
-true		{ std::cout << "true" << std::endl; return T;}
-null		{ std::cout << "null" << std::endl; return T;}
-case		{ std::cout << "case" << std::endl; return T;}
-void		{ std::cout << "void" << std::endl; return T;}
-while		{ std::cout << "while" << std::endl; return T;}
-break		{ std::cout << "break" << std::endl; return T;}
-false		{ std::cout << "false" << std::endl; return T;}
-catch		{ std::cout << "catch" << std::endl; return T;}
-throw		{ std::cout << "throw" << std::endl; return T;}
-yield		{ std::cout << "yield" << std::endl; return T;}
-super		{ std::cout << "super" << std::endl; return T;}
-const		{ std::cout << "const" << std::endl; return T;}
-return		{ std::cout << "return" << std::endl; return T;}
-"delete"       	{ std::cout << "delete" << std::endl; return T;}
-switch		{ std::cout << "switch" << std::endl; return T;}
-typeof		{ std::cout << "typeof" << std::endl; return T;}
-import		{ std::cout << "import" << std::endl; return T;}
-delete		{ std::cout << "delete" << std::endl; return T;}
-export		{ std::cout << "export" << std::endl; return T;}
-default		{ std::cout << "default" << std::endl; return T;}
-finally		{ std::cout << "finally" << std::endl; return T;}
-continue	{ std::cout << "continue" << std::endl; return T;}
-function	{ std::cout << "function" << std::endl; return T;}
-debugger	{ std::cout << "debugger" << std::endl; return T;}
-undefined	{ std::cout << "undefined" << std::endl; return T;}
-instanceof	{ std::cout << "instanceof" << std::endl; return T;}
-"use strict"	{ std::cout << "use strict" << std::endl; return T;}
+"/*"		{ std::cout << "COMMENT" << std::endl; BEGIN(comment); }
+"//"		{ std::cout << "COMMENT" << std::endl; BEGIN(comment_); }
+if		{ std::cout << "if" << std::endl; }
+in		{ std::cout << "in" << std::endl; }
+do		{ std::cout << "do" << std::endl; }
+for		{ std::cout << "for" << std::endl; }
+var		{ std::cout << "var" << std::endl; }
+new		{ std::cout << "new" << std::endl; }
+let		{ std::cout << "let" << std::endl; }
+try		{ std::cout << "try" << std::endl; }
+else		{ std::cout << "else" << std::endl; }
+with		{ std::cout << "with" << std::endl; }
+this		{ std::cout << "this" << std::endl; }
+true		{ std::cout << "true" << std::endl; }
+null		{ std::cout << "null" << std::endl; }
+case		{ std::cout << "case" << std::endl; }
+void		{ std::cout << "void" << std::endl; }
+while		{ std::cout << "while" << std::endl; }
+break		{ std::cout << "break" << std::endl; }
+false		{ std::cout << "false" << std::endl; }
+catch		{ std::cout << "catch" << std::endl; }
+throw		{ std::cout << "throw" << std::endl; }
+yield		{ std::cout << "yield" << std::endl; }
+super		{ std::cout << "super" << std::endl; }
+const		{ std::cout << "const" << std::endl; }
+return		{ std::cout << "return" << std::endl; }
+"delete"       	{ std::cout << "delete" << std::endl; }
+switch		{ std::cout << "switch" << std::endl; }
+typeof		{ std::cout << "typeof" << std::endl; }
+import		{ std::cout << "import" << std::endl; }
+delete		{ std::cout << "delete" << std::endl; }
+export		{ std::cout << "export" << std::endl; }
+default		{ std::cout << "default" << std::endl; }
+finally		{ std::cout << "finally" << std::endl; }
+continue	{ std::cout << "continue" << std::endl; }
+function	{ std::cout << "function" << std::endl; }
+debugger	{ std::cout << "debugger" << std::endl; }
+undefined	{ std::cout << "undefined" << std::endl; }
+instanceof	{ std::cout << "instanceof" << std::endl; }
+"use strict"	{ std::cout << "use strict" << std::endl; }
 
-[0-9]*		{ std::cout  <<  "NUMBER"  <<  std::endl;  return T;}
+[0-9]*		{ std::cout  <<  "NUMBER"  <<  std::endl;  }
 
 class|extends|enum|await { yyerror("invalid keyword"); }
 
-<string>[^"]* 	{ std::cout << "STRING_LITERAL" << std::endl; BEGIN(0); return T;}
-<string_>[^']*	{ std::cout << "STRING_LITERAL" << std::endl; BEGIN(0); return T;}
+<string>[^"]* 	{ std::cout << "STRING_LITERAL" << std::endl; BEGIN(0); }
+<string_>[^']*	{ std::cout << "STRING_LITERAL" << std::endl; BEGIN(0); }
 <string>["]	{ std::cout << "\"" << std::endl; BEGIN(0); inString = false; }
 <string_>[']	{ std::cout << "'"  << std::endl; BEGIN(0); inString = false; }
 
 <comment>"*/"	{BEGIN(0);}
 <comment>.	{}
+<comment_>[\n]  {BEGIN(0); std::cout << "\n" << std::endl; }
+<comment_>.     {}
 
-[_a-zA-Z$][_a-zA-Z0-9$]* {std::cout << "IDENTIFIER" << std::endl; return T;}
+[_a-zA-Z$][_a-zA-Z0-9$]* {std::cout << "IDENTIFIER" << std::endl; }
 
 .               { yyerror("invalid character"); }
 
