@@ -8,7 +8,7 @@
 
 using namespace std;
 
-bool debug = false;
+bool debug = true;
 
 class token{
   public:
@@ -130,7 +130,6 @@ int main(){
 
 		int nextIndex = rand() % wordList[checkIndex].next.size();
 		checkIndex = wordList[checkIndex].next[nextIndex];
-		
 	}	
 	
 

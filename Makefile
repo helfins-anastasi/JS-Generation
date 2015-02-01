@@ -11,7 +11,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS)
-	g++ markov.cpp -o markov
+	$(CXX) markov.cpp -o markov
 
 lexer.o: lexer.l
 	$(FLEX) -o lexer.cpp lexer.l
@@ -25,8 +25,8 @@ main.o: main.cpp
 	$(CXX) $(FLAGS) -c -o main.o main.cpp
 
 .PHONY: run 
-run: $(TARGET)
-	./lang 
+run: $(TARGET) markov
+	./lang | ./markov > output.txt
 
 .PHONY: clean
 clean:
