@@ -12,6 +12,7 @@
 	void yyerror(const char *);
 %}
 
+
 %x string
 %x comment
 %x string_
@@ -45,6 +46,7 @@
 "/"		{ std::cout << "/" << std::endl; }
 "!"		{ std::cout << "!" << std::endl; }
 "%"		{ std::cout << "%" << std::endl; }
+"#"		{ std::cout << "#" << std::endl; }
 "\\"		{ std::cout << "\\" << std::endl; }
 [']		{ std::cout << "'" << std::endl;
 		  if(inString) inString = false; 
