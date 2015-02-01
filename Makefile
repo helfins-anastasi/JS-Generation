@@ -5,7 +5,7 @@ CXX		= g++
 FLAGS   = # add the -g flag to compile with debugging output for gdb
 TARGET	= lang
 
-OBJS = lexer.o
+OBJS = parser.o lexer.o main.o
 
 all: $(TARGET)
 
