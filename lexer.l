@@ -42,6 +42,7 @@
 "*"		{ std::cout << "*" << std::endl; return T;}
 "/"		{ std::cout << "/" << std::endl; return T;}
 "!"		{ std::cout << "!" << std::endl; return T;}
+"\\"		{ std::cout << "\\" << std::endl; return T;}
 [']		{ std::cout << "'" << std::endl;
 		  if(inString) inString = false; 
 		  else { BEGIN(string_); inString=true; }  }
@@ -94,6 +95,8 @@ class|extends|enum|await { yyerror("invalid keyword"); }
 
 <string>[^"]* 	{ std::cout << "STRING_LITERAL" << std::endl; BEGIN(0); return T;}
 <string_>[^']*	{ std::cout << "STRING_LITERAL" << std::endl; BEGIN(0); return T;}
+<string>["]	{ std::cout << "\"" << std::endl; BEGIN(0); inString = false; }
+<string_>[']	{ std::cout << "'"  << std::endl; BEGIN(0); inString = false; }
 
 <comment>"*/"	{BEGIN(0);}
 <comment>.	{}

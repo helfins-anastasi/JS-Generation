@@ -1,4 +1,4 @@
-BISON	= bison -d -v
+BISON	= bison -d
 FLEX	= flex
 CC		= gcc
 CXX		= g++
