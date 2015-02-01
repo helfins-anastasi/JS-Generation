@@ -11,6 +11,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS)
+	g++ markov.cpp -o markov
 
 lexer.o: lexer.l
 	$(FLEX) -o lexer.cpp lexer.l
@@ -33,4 +34,4 @@ diff: $(TARGET)
 
 .PHONY: clean
 clean:
-	rm -f *.o *~ lexer.cpp parser.cpp parser.hpp parser.output $(TARGET)
+	rm -f *.o *~ lexer.cpp parser.cpp parser.hpp parser.output markov $(TARGET)
