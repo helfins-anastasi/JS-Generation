@@ -15,10 +15,12 @@
 %x string
 %x comment
 %x string_
+%x comment_
 
 %%
 
-[ \t\n]         {}
+[ \t]  		{}
+[\n]		{ std::cout << "\n" << std::endl; }
 
 "("		{ std::cout << "(" << std::endl; }
 ")"		{ std::cout << ")" << std::endl; }
@@ -50,7 +52,8 @@
 "\""		{ std::cout << "\"" << std::endl;
 		  if(inString) inString = false; 
 		  else { BEGIN(string); inString=true; }   }
-"/*"		{ std::cout << "COMMENT" <<std::endl;BEGIN(comment);}
+"/*"		{ std::cout << "COMMENT" << std::endl; BEGIN(comment); }
+"//"		{ std::cout << "COMMENT" << std::endl; BEGIN(comment_); }
 if		{ std::cout << "if" << std::endl; }
 in		{ std::cout << "in" << std::endl; }
 do		{ std::cout << "do" << std::endl; }
@@ -101,6 +104,8 @@ class|extends|enum|await { yyerror("invalid keyword"); }
 
 <comment>"*/"	{BEGIN(0);}
 <comment>.	{}
+<comment_>[\n]  {BEGIN(0); std::cout << "\n" << std::endl; }
+<comment_>.     {}
 
 [_a-zA-Z$][_a-zA-Z0-9$]* {std::cout << "IDENTIFIER" << std::endl; }
 
