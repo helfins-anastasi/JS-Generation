@@ -21,6 +21,8 @@ class token{
 char letters[52] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
 		    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 
+char vowelsplus[6] = {'a','e','i','o','u',' '};
+
 char numbers[10] = {'0','1','2','3','4','5','6','7','8','9'};
 
 char letterswithspecial[54] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
@@ -33,6 +35,7 @@ void makeString(){
 	cout << "\"";
 	for(int i = 0; i < (rand() % 20)+1;i++){
 		cout << letters[rand() % 52];	
+		cout << vowelsplus[rand()%6];
 	}
 	cout << "\"";
 }
@@ -54,6 +57,7 @@ void makeComment(){
 	cout << "//";
 	for(int i = 0; i < (rand() % 200)+1;i++){
 		cout << letterswithspecial[rand() % 54];	
+		cout << vowelsplus[rand()%6];
 	}
 
 }
