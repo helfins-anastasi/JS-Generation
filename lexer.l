@@ -21,7 +21,7 @@
 %%
 
 [ \t]  		{}
-[\n]		{ std::cout << "\n" << std::endl; }
+[\n]		{ std::cout << std::endl; }
 
 "("		{ std::cout << "(" << std::endl; }
 ")"		{ std::cout << ")" << std::endl; }
