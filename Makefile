@@ -24,13 +24,9 @@ parser.o: parser.y
 main.o: main.cpp
 	$(CXX) $(FLAGS) -c -o main.o main.cpp
 
-.PHONY: run
+.PHONY: run 
 run: $(TARGET)
-	@python3 runtests.py
-
-.PHONY: diff
-diff: $(TARGET)
-	python3 runtests.py -v | diff - output.txt
+	./lang 
 
 .PHONY: clean
 clean:
