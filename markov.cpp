@@ -8,7 +8,7 @@
 
 using namespace std;
 
-bool debug = true;
+bool debug = false;
 
 class token{
   public:
