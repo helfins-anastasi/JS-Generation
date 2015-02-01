@@ -11,12 +11,9 @@
 
 %error-verbose
 
-%token T;
-
 %%
 
-Start : T Start
-      | ;
+Start : ;
 
 %%
 
